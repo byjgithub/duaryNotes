@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+
+    <!-- 如果没有指定使用哪个配置，默认使用这个 -->
+    <default-config>
+        <!-- 连接数据库的 4项基本设置 -->
+        <property name="driverClass">com.mysql.jdbc.Driver</property>
+        <property name="jdbcUrl">jdbc:mysql://106.12.117.138:3306/shop</property>
+        <property name="user">root</property>
+        <property name="password">Admin123!</property>
+        <!-- 初始化连接数量，介于 maxPoolSize 和 MinPoolSize之间 -->
+        <property name="initialPoolSize">5</property>
+        <!-- 最大连接数 -->
+        <property name="maxPoolSize">20</property>
+        <!-- 最小连接数 -->
+        <attribute name="MinPoolSize">0</attribute>
+        <!-- 连接超时时间 -->
+        <attribute name="CheckoutTimeout">3000</attribute>
+        <!-- 如果池中连接数量不够时，自动增长的连接的数量 -->
+        <attribute name="AcquireIncrement">5</attribute>
+        <!-- JDBC的标准参数，用于控制数据源内加载的preparedStatement数量 -->
+        <attribute name="MaxStatements">0</attribute>
+        <!-- 连接池内单个连接所拥有的最大缓存statements数量 -->
+        <attribute name="MaxStatementsPerConnection">0</attribute>
+        <!--  -->
+        <attribute name="MaxIdleTime">0</attribute>
+    </default-config>
+
+    <!-- 数据库参数 -->
+    <named-config name="oracle">
+        <property name="driverClass">com.mysql.jdbc.Driver</property>
+        <property name="jdbcUrl">jdbc:mysql:///web_07</property>
+        <property name="user">root</property>
+        <property name="password">123</property>
+    </named-config>
+
+    <!-- <attribute name="AcquireIncrement">3</attribute>                     -->
+    <!-- <attribute name="AcquireRetryAttempts">30</attribute>                -->
+    <!-- <attribute name="AcquireRetryDelay">1000</attribute>                 -->
+    <!-- <attribute name="AutoCommitOnClose">false</attribute>                -->
+    <!-- <attribute name="AutomaticTestTable"></attribute>                    -->
+    <!-- <attribute name="BreakAfterAcquireFailure">false</attribute>         -->
+    <!-- <attribute name="CheckoutTimeout">0</attribute>                      -->
+    <!-- <attribute name="ConnectionTesterClassName">0</attribute>            -->
+    <!-- <attribute name="Description">A pooled c3p0 DataSource</attribute>   -->
+    <!-- <attribute name="FactoryClassLocation"></attribute>                  -->
+    <!-- <attribute name="ForceIgnoreUnresolvedTransactions">true</attribute> -->
+    <!-- <attribute name="IdleConnectionTestPeriod">-1</attribute>            -->
+    <!-- <attribute name="InitialPoolSize">3</attribute>                      -->
+    <!-- <attribute name="MaxIdleTime">0</attribute>                          -->
+    <!-- <attribute name="MaxPoolSize">15</attribute>                         -->
+    <!-- <attribute name="MaxStatements">0</attribute>                        -->
+    <!-- <attribute name="MaxStatementsPerConnection">0</attribute>           -->
+    <!-- <attribute name="MinPoolSize">0</attribute>                          -->
+    <!-- <attribute name="NumHelperThreads">3</attribute>                     -->
+    <!-- <attribute name="PreferredTestQuery"></attribute>                    -->
+    <!-- <attribute name="TestConnectionOnCheckin">false</attribute>          -->
+    <!-- <attribute name="TestConnectionOnCheckout">false</attribute>         -->
+    <!-- <attribute name="UsesTraditionalReflectiveProxies">false</attribute> -->
+
+</c3p0-config>

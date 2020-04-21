@@ -1,0 +1,64 @@
+
+
+# 分类表
+CREATE TABLE `category` (
+  `cid` INT(11) NOT NULL AUTO_INCREMENT COMMENT '分类id',
+  `cname` VARCHAR(15) DEFAULT NULL COMMENT '分类名称',
+  `cdesc` VARCHAR(100) DEFAULT NULL COMMENT '分类描述',
+  PRIMARY KEY (`cid`)
+) ENGINE=INNODB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8
+
+# 商品订单表
+CREATE TABLE `orderitem` (
+  `ono` INT(11) DEFAULT NULL COMMENT '订单ID',
+  `pno` INT(11) DEFAULT NULL COMMENT '商品ID',
+  `count` INT(11) DEFAULT NULL COMMENT '商品数量',
+  `subsum` DOUBLE DEFAULT NULL COMMENT '订单项总价',
+  KEY `ono` (`ono`),
+  KEY `orderitem_fk_2` (`pno`),
+  CONSTRAINT `orderitem_fk_2` FOREIGN KEY (`pno`) REFERENCES `product` (`pid`),
+  CONSTRAINT `orderitem_ibfk_1` FOREIGN KEY (`ono`) REFERENCES `orders` (`oid`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8
+
+
+# 订单表
+CREATE TABLE `orders` (
+  `oid` INT(11) NOT NULL AUTO_INCREMENT COMMENT '订单编号',
+  `sum` DOUBLE(15,2) DEFAULT NULL COMMENT '总价',
+  `otime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '订单时间',
+  `address` VARCHAR(100) DEFAULT NULL COMMENT '地址',
+  `uno` INT(11) DEFAULT NULL COMMENT '外键(user表主键)',
+  PRIMARY KEY (`oid`),
+  KEY `uno` (`uno`),
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`uno`) REFERENCES `user` (`uid`)
+) ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
+
+
+# 商品表
+CREATE TABLE `product` (
+  `pid` INT(11) NOT NULL AUTO_INCREMENT COMMENT '商品ID',
+  `pname` VARCHAR(10) DEFAULT NULL COMMENT '商品名称',
+  `price` DOUBLE DEFAULT NULL COMMENT '商品价格',
+  `cno` INT(11) DEFAULT NULL COMMENT '外键',
+  PRIMARY KEY (`pid`),
+  KEY `product_fk` (`cno`),
+  CONSTRAINT `product_fk` FOREIGN KEY (`cno`) REFERENCES `category` (`cid`)
+) ENGINE=INNODB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8
+
+
+
+
+# 用户表
+CREATE TABLE `user` (
+  `uid` INT(11) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `username` VARCHAR(31) DEFAULT NULL COMMENT '用户名',
+  `password` VARCHAR(31) DEFAULT NULL COMMENT '密码',
+  `phone` VARCHAR(11) DEFAULT NULL COMMENT '手机号',
+  PRIMARY KEY (`uid`)
+) ENGINE=INNODB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8
+
+
+
+
+
+
